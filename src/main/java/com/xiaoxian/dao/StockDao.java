@@ -7,5 +7,9 @@ import com.xiaoxian.entity.Stock;
  */
 public interface StockDao {
 
+    //根据商品id查询商品信息
     Stock checkStock(Integer id);
+
+    //根据商品id更新商品销量
+    int updateSale(Stock stock);
 }

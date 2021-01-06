@@ -21,7 +21,19 @@ public class StockController {
     public String kill(Integer id){
         System.out.println("秒杀商品的id = " + id);
         //调用秒杀业务
-        int orderId = orderService.kill(id);
-        return "秒杀成功，订单id为："+String.valueOf(orderId);
+        try {
+            //悲观锁解决超卖
+            /*synchronized (this) {
+                int orderId = orderService.kill(id);
+                return "秒杀成功，订单id为："+String.valueOf(orderId);
+            }*/
+
+            //乐观锁解决超卖——version字段与数据库的事务
+            int orderId = orderService.kill(id);
+            return "秒杀成功，订单id为："+String.valueOf(orderId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
     }
 }

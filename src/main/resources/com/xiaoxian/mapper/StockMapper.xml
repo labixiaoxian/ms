@@ -16,4 +16,15 @@
         id = #{id}
     </select>
 
+    <update id="updateSale" parameterType="com.xiaoxian.entity.Stock">
+        update stock
+        set
+          sale = sale+1,
+          version = version+1
+        WHERE
+          id = #{id}
+        AND
+          version = #{version}
+    </update>
+
 </mapper>
