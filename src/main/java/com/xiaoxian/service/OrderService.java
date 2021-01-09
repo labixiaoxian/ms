@@ -5,4 +5,8 @@ package com.xiaoxian.service;
  */
 public interface OrderService {
     int kill(Integer id);
+
+    String getMd5(Integer id, Integer userId);
+
+    int kill(Integer id, Integer userId, String md5);
 }
